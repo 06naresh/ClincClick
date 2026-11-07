@@ -1,0 +1,10 @@
+venv
+.env
+.env.*
+__pycache__
+.pytest_cache
+.git
+*.pyc
+alembic/versions/README
+frontend_dev.log
+node_modules

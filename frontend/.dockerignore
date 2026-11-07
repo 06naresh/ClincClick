@@ -1,0 +1,11 @@
+node_modules
+dist
+.vite
+.git
+.env
+.env.*
+test-results
+playwright-report
+coverage
+npm-debug.log*
+*.local
