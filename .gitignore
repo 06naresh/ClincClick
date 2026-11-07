@@ -43,3 +43,8 @@ Thumbs.db
 *.log
 temp/
 tmp/
+
+# Test artifacts
+frontend/test-results/
+frontend/playwright-report/
+frontend/blob-report/
