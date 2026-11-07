@@ -42,7 +42,7 @@ class Settings(BaseSettings):
     FRONTEND_URL: str = "http://localhost:5173"
 
     # Rate limiting for authentication endpoints (in-memory, per IP).
-    RATE_LIMIT_AUTH_ATTEMPTS: int = 10
+    RATE_LIMIT_AUTH_ATTEMPTS: int = 50  # raised for dev; tighten to 10 in production
     RATE_LIMIT_AUTH_WINDOW_SECONDS: int = 60
 
     # Refresh-token cookie (HTTP-only; frontend JS must never read this).

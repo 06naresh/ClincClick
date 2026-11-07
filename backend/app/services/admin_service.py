@@ -33,9 +33,9 @@ class AdminService:
                 "bookings": self.booking_repository.count_bookings(),
             },
             "bookings_by_status": {
-                "pending": self.booking_repository.count_bookings(current.PENDING),
-                "confirmed": self.booking_repository.count_bookings(current.CONFIRMED),
-                "completed": self.booking_repository.count_bookings(current.COMPLETED),
-                "cancelled": self.booking_repository.count_bookings(current.CANCELLED),
+                "pending": self.booking_repository.count_bookings(status=current.PENDING),
+                "confirmed": self.booking_repository.count_bookings(status=current.CONFIRMED),
+                "completed": self.booking_repository.count_bookings(status=current.COMPLETED),
+                "cancelled": self.booking_repository.count_bookings(status=current.CANCELLED),
             },
         }
