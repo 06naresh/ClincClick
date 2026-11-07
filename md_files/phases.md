@@ -1578,7 +1578,7 @@ Use this table to track project progress.
 | 06 | React Frontend Foundation | Completed |
 | 07 | Customer Dashboard and Booking UI | Completed |
 | 08 | Admin Dashboard | Completed |
-| 09 | Testing, Validation, and Security | Not Started |
+| 09 | Testing, Validation, and Security | Completed |
 | 10 | Docker, Deployment, and Documentation | Not Started |
 
 Update the status as:

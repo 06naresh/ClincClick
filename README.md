@@ -25,7 +25,7 @@ A full-stack clinic appointment-booking platform built with **React + Vite (Java
 
 ## Project Status
 
-- **Current phase: Phase 09 — Testing, Validation, and Security (next up)**
+- **Current phase: Phase 10 — Docker, Deployment, and Documentation (next up)**
 
 
 
