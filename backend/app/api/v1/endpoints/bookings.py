@@ -70,7 +70,7 @@ def my_bookings(
     )
     return SuccessResponse(
         message="Your bookings retrieved",
-        data=[[_serialize_booking(b) for b in bookings]],
+        data=[_serialize_booking(b) for b in bookings],
     )
 
 

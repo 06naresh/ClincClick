@@ -1577,7 +1577,7 @@ Use this table to track project progress.
 | 05 | Booking Management APIs | Completed |
 | 06 | React Frontend Foundation | Completed |
 | 07 | Customer Dashboard and Booking UI | Completed |
-| 08 | Admin Dashboard | Not Started |
+| 08 | Admin Dashboard | Completed |
 | 09 | Testing, Validation, and Security | Not Started |
 | 10 | Docker, Deployment, and Documentation | Not Started |
 

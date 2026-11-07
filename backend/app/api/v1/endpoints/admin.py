@@ -70,7 +70,7 @@ def list_all_bookings(
     )
     return SuccessResponse(
         message="All bookings retrieved",
-        data=[[_serialize_booking(b) for b in bookings]],
+        data=[_serialize_booking(b) for b in bookings],
     )
 
 
