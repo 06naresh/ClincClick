@@ -22,3 +22,15 @@ class UserResponse(BaseModel):
     role: UserRole
     is_active: bool
     created_at: datetime
+
+
+class UserUpdate(BaseModel):
+    """Permitted profile updates (full_name / phone).
+
+    The role, is_active and email fields are deliberately absent so that
+    clients cannot (even accidentally) escalate privileges or change email
+    without the dedicated verification flow.
+    """
+
+    full_name: str | None = Field(default=None, min_length=2, max_length=150)
+    phone: str | None = Field(default=None, max_length=20)

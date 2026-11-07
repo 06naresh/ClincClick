@@ -25,6 +25,17 @@ class UserRepository:
         stmt = select(func.count()).select_from(User).where(User.email == email)
         return bool(self.db.scalar(stmt) or 0)
 
+    def update(self, user, **fields) -> User:
+        changed = False
+        for key, value in fields.items():
+            if value is not None and hasattr(user, key):
+                setattr(user, key, value)
+                changed = True
+        if changed:
+            self.db.commit()
+            self.db.refresh(user)
+        return user
+
     def create_user(
         self,
         *,
