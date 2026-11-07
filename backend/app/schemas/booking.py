@@ -30,6 +30,10 @@ class BookingListenerResponse(BaseModel):
     booking_reference: str
     user_id: int
     slot_id: int
+    slot_start_time: datetime | None = None
+    slot_end_time: datetime | None = None
+    service_id: int | None = None
+    provider_id: int | None = None
     status: BookingStatus
     reason: str | None = None
     created_at: datetime

@@ -1,5 +1,7 @@
 """Booking endpoints (Task 5.2-5.9)."""
 
+from datetime import datetime
+
 from fastapi import APIRouter, Depends, Query, status
 from sqlalchemy.orm import Session
 
@@ -18,6 +20,18 @@ from app.models.booking import BookingStatus
 from app.services.booking_service import BookingService
 
 router = APIRouter(prefix="/bookings", tags=["Bookings"])
+
+def _serialize_booking(b):
+    item = BookingListenerResponse.model_validate(b)
+    slot = getattr(b, "slot", None)
+    if slot is not None:
+        item.slot_start_time = slot.start_time
+        item.slot_end_time = slot.end_time
+        item.service_id = slot.service_id
+        item.provider_id = slot.provider_id
+    return item
+
+
 
 
 def _is_admin(user: User) -> bool:
@@ -39,7 +53,7 @@ def create_booking(
     reference = booking.booking_reference
     return SuccessResponse(
         message="Booking created successfully",
-        data=BookingListenerResponse.model_validate(booking),
+        data=_serialize_booking(booking),
     )
 
 
@@ -56,7 +70,7 @@ def my_bookings(
     )
     return SuccessResponse(
         message="Your bookings retrieved",
-        data=[BookingListenerResponse.model_validate(b) for b in bookings],
+        data=[[_serialize_booking(b) for b in bookings]],
     )
 
 
@@ -73,7 +87,7 @@ def get_booking(
     )
     return SuccessResponse(
         message="Booking retrieved",
-        data=BookingListenerResponse.model_validate(booking),
+        data=_serialize_booking(booking),
     )
 
 
@@ -93,7 +107,7 @@ def reschedule_booking(
     )
     return SuccessResponse(
         message="Booking rescheduled successfully",
-        data=BookingListenerResponse.model_validate(booking),
+        data=_serialize_booking(booking),
     )
 
 
@@ -112,7 +126,7 @@ def cancel_booking(
     )
     return SuccessResponse(
         message="Booking cancelled successfully",
-        data=BookingListenerResponse.model_validate(booking),
+        data=_serialize_booking(booking),
     )
 
 

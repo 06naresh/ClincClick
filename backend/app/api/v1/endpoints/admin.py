@@ -14,10 +14,23 @@ from app.models.booking import BookingStatus
 from app.models.user import User
 from app.schemas.booking import BookingListenerResponse
 from app.schemas.common import SuccessResponse
+from app.schemas.booking import BookingListenerResponse
 from app.services.admin_service import AdminService
 from app.services.booking_service import BookingService
 
 router = APIRouter(prefix="/admin", tags=["Admin"])
+
+def _serialize_booking(b):
+    item = BookingListenerResponse.model_validate(b)
+    slot = getattr(b, "slot", None)
+    if slot is not None:
+        item.slot_start_time = slot.start_time
+        item.slot_end_time = slot.end_time
+        item.service_id = slot.service_id
+        item.provider_id = slot.provider_id
+    return item
+
+
 
 
 @router.get("/dashboard", response_model=SuccessResponse)
@@ -26,6 +39,9 @@ def admin_dashboard(
     current_admin: User = Depends(require_admin),
 ):
     stats = AdminService(db).dashboard_stats()
+    stats["recent_bookings"] = [
+        _serialize_booking(b) for b in stats.get("recent_bookings", [])
+    ]
     return SuccessResponse(message="Admin dashboard data retrieved", data=stats)
 
 
@@ -54,7 +70,7 @@ def list_all_bookings(
     )
     return SuccessResponse(
         message="All bookings retrieved",
-        data=[BookingListenerResponse.model_validate(b) for b in bookings],
+        data=[[_serialize_booking(b) for b in bookings]],
     )
 
 
@@ -74,5 +90,5 @@ def update_booking_status(
     )
     return SuccessResponse(
         message="Booking status updated",
-        data=BookingListenerResponse.model_validate(booking),
+        data=_serialize_booking(booking),
     )
