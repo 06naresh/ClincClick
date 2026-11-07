@@ -1570,8 +1570,8 @@ Use this table to track project progress.
 
 | Phase | Name | Status |
 |---|---|---|
-| 01 | Project Planning and Environment Setup | Not Started |
-| 02 | Database Design and Backend Foundation | Not Started |
+| 01 | Project Planning and Environment Setup | Completed |
+| 02 | Database Design and Backend Foundation | Completed |
 | 03 | Authentication and Authorization | Not Started |
 | 04 | Service and Availability Management | Not Started |
 | 05 | Booking Management APIs | Not Started |

@@ -25,18 +25,22 @@ A full-stack clinic appointment-booking platform built with **React + Vite (Java
 
 ## Project Status
 
-- [x] **Phase 01 — Project Planning and Environment Setup** (in progress)
-- [ ] Phase 02 — Database Design and Backend Foundation
-- [ ] Phase 03 — Authentication and Authorization
-- [ ] Phase 04 — Service and Availability Management
-- [ ] Phase 05 — Booking Management APIs
-- [ ] Phase 06 — React Frontend Foundation
-- [ ] Phase 07 — Customer Dashboard and Booking UI
-- [ ] Phase 08 — Admin Dashboard
-- [ ] Phase 09 — Testing, Validation, and Security
-- [ ] Phase 10 — Docker, Deployment, and Documentation
+- **Current phase: Phase 03 — Authentication and Authorization (next up)**
 
-## Getting Started (Phase 01)
+| Phase | Name | Status |
+|---|---|---|
+| 01 | Project Planning and Environment Setup | Completed |
+| 02 | Database Design and Backend Foundation | In Progress |
+| 03 | Authentication and Authorization | Not Started |
+| 04 | Service and Availability Management | Not Started |
+| 05 | Booking Management APIs | Not Started |
+| 06 | React Frontend Foundation | Not Started |
+| 07 | Customer Dashboard and Booking UI | Not Started |
+| 08 | Admin Dashboard | Not Started |
+| 09 | Testing, Validation, and Security | Not Started |
+| 10 | Docker, Deployment, and Documentation | Not Started |
+
+## Getting Started
 
 ### 1. Create the database in pgAdmin 4
 
@@ -57,6 +61,20 @@ uvicorn app.main:app --reload
 
 - API root: http://localhost:8000
 - Swagger UI: http://localhost:8000/docs
+- Health API: http://localhost:8000/api/v1/health
+- Health DB: http://localhost:8000/api/v1/health/db
+
+### Database migrations (Alembic)
+
+Run from `backend/` with the venv active:
+
+```bash
+alembic upgrade head                                  # apply all migrations
+alembic revision --autogenerate -m "change summary"   # create a new migration
+alembic downgrade -1                                  # revert last migration
+```
+
+Verify the resulting tables in pgAdmin 4 after each `upgrade`.
 
 ### 3. Frontend
 
