@@ -1,13 +1,10 @@
-"""Aggregated /api/v1 router.
-
-Each feature area registers its own sub-router here as phases progress:
-Phase 03 adds auth/users, Phase 04 services/providers/availability,
-Phase 05 bookings/admin.
-"""
+"""Aggregated /api/v1 router (Phase 03 wiring)."""
 
 from fastapi import APIRouter
 
-from app.api.v1.endpoints import health
+from app.api.v1.endpoints import admin, auth, health
 
 api_v1_router = APIRouter()
 api_v1_router.include_router(health.router)
+api_v1_router.include_router(auth.router)
+api_v1_router.include_router(admin.router)

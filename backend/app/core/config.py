@@ -2,16 +2,24 @@
 
 All values are loaded from environment variables (backend/.env) using
 pydantic-settings. Credentials and secrets must never be hardcoded here.
+
+The path to `.env` is resolved relative to this file so the backend works
+regardless of the current working directory (important for `pytest` invocations
+from the repository root).
 """
+
+from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+_BASE_DIR = Path(__file__).resolve().parents[2]  # backend/
+
 
 class Settings(BaseSettings):
-    """Central application settings, sourced from the backend/.env file."""
+    """Central application settings, sourced from backend/.env."""
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=str(_BASE_DIR / ".env"),
         env_file_encoding="utf-8",
         extra="ignore",
     )
@@ -32,6 +40,19 @@ class Settings(BaseSettings):
 
     # CORS
     FRONTEND_URL: str = "http://localhost:5173"
+
+    # Rate limiting for authentication endpoints (in-memory, per IP).
+    RATE_LIMIT_AUTH_ATTEMPTS: int = 10
+    RATE_LIMIT_AUTH_WINDOW_SECONDS: int = 60
+
+    # Refresh-token cookie (HTTP-only; frontend JS must never read this).
+    REFRESH_COOKIE_NAME: str = "refresh_token"
+    REFRESH_COOKIE_SECURE: bool = False  # set True behind HTTPS
+
+    # Secure admin bootstrap (python -m app.db.init_db) — set via .env only.
+    ADMIN_EMAIL: str = ""
+    ADMIN_PASSWORD: str = ""
+    ADMIN_FULL_NAME: str = ""
 
 
 settings = Settings()

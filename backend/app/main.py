@@ -18,6 +18,7 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.api.v1.router import api_v1_router
 from app.core.config import settings
+from app.core.exceptions import DomainError
 
 app = FastAPI(
     title=settings.APP_NAME,
@@ -73,7 +74,17 @@ async def validation_exception_handler(
     )
 
 
-# --- Routes -------------------------------------------------------------------
+@app.exception_handler(DomainError)
+async def domain_error_handler(request: Request, exc: DomainError) -> JSONResponse:
+    """Concrete expected business failures (401/403/404/409/429) values."""
+    return JSONResponse(
+        status_code=exc.status_code,
+        content={
+            "success": False,
+            "message": exc.message,
+            "errors": [],
+        },
+    )
 
 app.include_router(api_v1_router, prefix="/api/v1")
 
