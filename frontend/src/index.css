@@ -1,0 +1,43 @@
+/*
+  ClincClick — Design tokens (phase 01 foundation)
+  Full design-system usage begins in Phase 06 (React Frontend Foundation).
+  See md_files/design.md for the complete color palette and rules.
+*/
+
+@import "tailwindcss";
+
+@theme {
+  /* Primary colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #dbeafe;
+
+  /* Secondary colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-light: #ede9fe;
+
+  /* Backgrounds & surfaces */
+  --color-background: #f8fafc;
+  --color-surface: #ffffff;
+  --color-surface-muted: #f1f5f9;
+  --color-stroke: #e2e8f0;
+
+  /* Text colors */
+  --color-heading: #0f172a;
+  --color-body: #334155;
+  --color-muted: #64748b;
+  --color-disabled: #94a3b8;
+
+  /* Status colors */
+  --color-success: #16a34a;
+  --color-success-light: #dcfce7;
+  --color-warning: #d97706;
+  --color-warning-light: #fef3c7;
+  --color-danger: #dc2626;
+  --color-danger-light: #fee2e2;
+  --color-info: #2563eb;
+  --color-info-light: #dbeafe;
+
+  /* Typography */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}

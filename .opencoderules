@@ -1,0 +1,1057 @@
+# Service Booking Application — AI Coding Rules
+
+## 1. Project Identity
+
+You are working on a full-stack application named **Service Booking Application**.
+
+The application is designed for clinics or service centers. Customers can register, log in, browse services, view available appointment slots, book appointments, reschedule appointments, cancel appointments, and view booking history.
+
+Administrators can manage services, providers, availability slots, and customer bookings.
+
+Your responsibility is to develop this application according to the approved project documentation.
+
+### Project Documentation
+
+Before making implementation decisions, read and follow these documents:
+
+1. `ai-assistant/architecture.md` — Application architecture and folder structure.
+2. `ai-assistant/design.md` — UI design system and responsive design guidelines.
+3. `ai-assistant/phases.md` — Development roadmap and implementation sequence.
+4. `ai-assistant/PRD.md` — Functional and non-functional requirements.
+
+These documents are the primary project references.
+
+If a requirement is missing or unclear, ask for clarification rather than inventing important business rules.
+
+---
+
+## 2. Mandatory Technology Stack
+
+Use the following technologies.
+
+### Frontend
+
+- React.
+- JavaScript only.
+- Vite.
+- Tailwind CSS.
+- React Router.
+- Axios.
+- React Context API.
+- React hooks.
+- Lucide React.
+
+### Backend
+
+- Python.
+- FastAPI.
+- SQLAlchemy.
+- Alembic.
+- Pydantic.
+- JWT authentication.
+- Role-Based Access Control.
+- Pytest.
+- HTTPX.
+
+### Database
+
+- PostgreSQL.
+- pgAdmin 4.
+- SQLAlchemy ORM.
+- Alembic migrations.
+
+### Testing
+
+- Pytest.
+- HTTPX.
+- Vitest.
+- React Testing Library.
+- Playwright.
+
+### Development and Deployment
+
+- Git.
+- GitHub.
+- Docker.
+- Docker Compose.
+
+### Strict Technology Rules
+
+1. Never use TypeScript in the frontend.
+2. All React components must use `.jsx` or `.js` files.
+3. Do not introduce a different frontend framework.
+4. Do not replace FastAPI with another backend framework.
+5. Do not replace PostgreSQL with SQLite.
+6. Use SQLAlchemy for database access.
+7. Use Alembic for database migrations.
+8. Use Pydantic for backend request and response validation.
+9. Do not introduce unnecessary libraries.
+10. Ask before changing the approved technology stack.
+
+---
+
+## 3. Development Phase Rules
+
+Follow the development roadmap in `ai-assistant/phases.md`.
+
+The phases are:
+
+1. Project Planning and Environment Setup.
+2. Database Design and Backend Foundation.
+3. Authentication and Authorization.
+4. Service and Availability Management.
+5. Booking Management APIs.
+6. React Frontend Foundation.
+7. Customer Dashboard and Booking UI.
+8. Admin Dashboard.
+9. Testing, Validation, and Security.
+10. Docker, Deployment, and Documentation.
+
+### Mandatory Rules
+
+- Work on the current phase first.
+- Do not skip phases.
+- Do not implement all application features in one response.
+- Do not move forward while critical tasks in the current phase remain incomplete.
+- Verify existing implementation before creating new files.
+- Reuse working code where possible.
+- Avoid unnecessary restructuring.
+- Update project progress only after verification.
+
+When beginning a new phase, explain:
+
+1. Phase objective.
+2. Concepts involved.
+3. Required folders and files.
+4. Implementation order.
+5. Expected output.
+6. Testing requirements.
+7. Completion criteria.
+
+---
+
+## 4. Folder Structure Rules
+
+Follow the approved folder structure from `ai-assistant/architecture.md`.
+
+The application must maintain separate frontend, backend, database, documentation, and AI-assistant responsibilities.
+
+### Frontend Structure
+
+Use a feature-based architecture.
+
+Example:
+
+```text
+frontend/
+└── src/
+    ├── app/
+    ├── assets/
+    ├── components/
+    │   ├── common/
+    │   ├── layout/
+    │   └── ui/
+    ├── features/
+    │   ├── auth/
+    │   ├── appointments/
+    │   ├── availability/
+    │   ├── services/
+    │   ├── dashboard/
+    │   └── profile/
+    ├── context/
+    ├── hooks/
+    ├── services/
+    ├── utils/
+    ├── styles/
+    └── tests/
+```
+
+### Backend Structure
+
+Use a layered architecture.
+
+Example:
+
+```text
+backend/
+├── app/
+│   ├── api/
+│   │   └── v1/
+│   │       ├── endpoints/
+│   │       └── router.py
+│   ├── core/
+│   ├── db/
+│   ├── models/
+│   ├── schemas/
+│   ├── services/
+│   ├── repositories/
+│   ├── utils/
+│   └── main.py
+├── alembic/
+│   └── versions/
+├── tests/
+│   ├── unit/
+│   ├── integration/
+│   └── conftest.py
+├── .env.example
+├── alembic.ini
+└── requirements.txt
+```
+
+### Folder Structure Rules
+
+1. Place files in their appropriate feature or architectural layer.
+2. Do not put unrelated functionality in one file.
+3. Do not create unnecessary folders.
+4. Do not duplicate existing components or services.
+5. Use meaningful and consistent filenames.
+6. Keep API routes separate from business logic.
+7. Keep database models separate from Pydantic schemas.
+8. Keep frontend API calls separate from presentation components.
+9. Do not move or rename existing files without a valid reason.
+10. If the folder structure needs to change, explain why before making major changes.
+
+The examples above are structural guidance. Follow the complete approved architecture document for the full structure.
+
+---
+
+## 5. Code Generation Rules
+
+Whenever generating or modifying code:
+
+1. Provide the exact file path.
+2. Explain the file's responsibility.
+3. Provide complete code when a complete file is requested.
+4. Do not provide disconnected code fragments when the user needs a complete implementation.
+5. Include all necessary imports.
+6. Use meaningful variable and function names.
+7. Avoid unnecessary abstractions.
+8. Follow existing project naming conventions.
+9. Handle loading, success, and error states.
+10. Keep functions and components focused on one responsibility.
+11. Reuse shared functionality instead of duplicating code.
+12. Do not remove existing functionality without approval.
+13. Do not leave unexplained placeholder code in completed features.
+14. Do not claim that unimplemented functionality is working.
+15. Do not invent API response structures that conflict with the backend.
+
+### Beginner-Friendly Explanation
+
+The user is learning full-stack development.
+
+Explain important code in simple language.
+
+When implementing a feature, explain:
+
+- What the code does.
+- Why it is needed.
+- How it works.
+- How it communicates with other files.
+- How to run it.
+- How to test it.
+
+Avoid unexplained advanced patterns.
+
+---
+
+## 6. React Frontend Rules
+
+### Component Design
+
+- Use functional components.
+- Use React hooks.
+- Keep components reusable.
+- Keep components focused.
+- Use props for parent-to-child data flow.
+- Lift state when multiple components need the same state.
+- Avoid unnecessary global state.
+
+### State Management
+
+Use React Context API for shared application-level state where appropriate.
+
+Examples:
+
+- Authentication state.
+- Current user.
+- Theme preferences, if implemented.
+
+Use local component state for local UI behavior.
+
+Do not introduce Redux or Zustand unless explicitly approved.
+
+### Routing
+
+Use React Router.
+
+Implement:
+
+- Public routes.
+- Customer-protected routes.
+- Admin-protected routes.
+- Appropriate fallback or not-found routes.
+
+Frontend route protection improves the user experience but is never a replacement for backend authorization.
+
+### API Integration
+
+Use Axios through a centralized API client.
+
+Requirements:
+
+- Keep API configuration centralized.
+- Organize API methods by feature.
+- Handle errors consistently.
+- Handle authentication failures.
+- Avoid duplicate API logic.
+- Avoid hardcoded backend URLs in components.
+- Read configuration from environment variables.
+
+### Forms
+
+Forms must:
+
+- Have clear labels.
+- Validate required fields.
+- Display useful validation messages.
+- Disable submission when appropriate.
+- Display loading feedback.
+- Display success and error feedback.
+- Prevent accidental duplicate submissions.
+
+Frontend validation does not replace backend validation.
+
+### Performance
+
+- Avoid unnecessary component re-renders.
+- Use `useMemo` and `useCallback` only when beneficial.
+- Avoid unnecessary API requests.
+- Use pagination for large datasets.
+- Use lazy loading where appropriate.
+- Keep component responsibilities clear.
+
+---
+
+## 7. UI and Design Rules
+
+Follow `ai-assistant/design.md`.
+
+Use the GoCliniq website as a visual reference:
+
+https://gocliniq.in/
+
+Do not copy its branding, proprietary assets, or source code.
+
+### Design Direction
+
+Create a professional healthcare SaaS interface.
+
+Use:
+
+- Primary blue: `#3B82F6`
+- Dark blue: `#2563EB`
+- Light blue: `#DBEAFE`
+- Secondary purple: `#8B5CF6`
+- Light purple: `#EDE9FE`
+- Background: `#F8FAFC`
+- Surface: `#FFFFFF`
+- Border: `#E2E8F0`
+- Heading: `#0F172A`
+- Body: `#334155`
+- Muted text: `#64748B`
+
+Use the full color system defined in `design.md` rather than introducing random colors.
+
+### UI Requirements
+
+- Clean layouts.
+- Consistent spacing.
+- Reusable cards.
+- Professional dashboard.
+- Clear sidebar navigation.
+- Readable typography.
+- Consistent buttons.
+- Accessible forms.
+- Clear appointment status badges.
+- Useful empty states.
+- Loading indicators.
+- Error states.
+- Confirmation dialogs.
+
+### Responsive Design
+
+The application must work on:
+
+- Desktop.
+- Laptop.
+- Tablet.
+- Mobile.
+
+Do not design only for desktop.
+
+On mobile:
+
+- Adapt navigation.
+- Stack cards.
+- Make forms usable.
+- Avoid horizontal overflow.
+- Keep buttons touch-friendly.
+- Make appointment information readable.
+
+### Accessibility
+
+- Use semantic HTML.
+- Provide labels for inputs.
+- Maintain visible focus states.
+- Support keyboard navigation.
+- Use sufficient color contrast.
+- Do not rely on color alone to communicate booking status.
+
+---
+
+## 8. Backend Architecture Rules
+
+Follow the layered architecture in `architecture.md`.
+
+### API Layer
+
+Responsibilities:
+
+- Define HTTP endpoints.
+- Receive requests.
+- Validate request data through schemas.
+- Resolve dependencies.
+- Call the service layer.
+- Return appropriate responses.
+
+Do not put complex business logic inside route handlers.
+
+### Service Layer
+
+Responsibilities:
+
+- Implement business rules.
+- Coordinate operations.
+- Validate workflows.
+- Handle booking logic.
+- Manage transactions through the appropriate database layer.
+
+### Repository Layer
+
+Responsibilities:
+
+- Handle database queries.
+- Retrieve records.
+- Create records.
+- Update records.
+- Delete or deactivate records when appropriate.
+
+### Model Layer
+
+Responsibilities:
+
+- Define SQLAlchemy models.
+- Define relationships.
+- Define database-level constraints.
+
+### Schema Layer
+
+Responsibilities:
+
+- Validate request data.
+- Define response structures.
+- Separate create, update, and response schemas where appropriate.
+
+### Core Layer
+
+Responsibilities:
+
+- Application settings.
+- Authentication configuration.
+- Security utilities.
+- Shared application configuration.
+
+Do not mix responsibilities between layers without a clear reason.
+
+---
+
+## 9. PostgreSQL and Database Rules
+
+PostgreSQL is the application's primary database.
+
+### Local Database Configuration
+
+Database name:
+
+`service_booking_db`
+
+Connection settings:
+
+- Host: `localhost`
+- Port: `5432`
+- Username: `postgres`
+
+Connection URL template:
+
+`postgresql://postgres:YOUR_PASSWORD@localhost:5432/service_booking_db`
+
+The actual password must remain in the local environment file.
+
+pgAdmin 4 is used to:
+
+- Create the database.
+- Inspect tables.
+- View records.
+- Run SQL queries.
+- Review relationships.
+- Back up and restore data.
+
+The FastAPI backend connects directly to PostgreSQL.
+
+### SQLAlchemy Rules
+
+- Use SQLAlchemy for database operations.
+- Define explicit relationships.
+- Use appropriate constraints.
+- Use database sessions correctly.
+- Avoid unnecessary queries.
+- Handle database errors.
+- Avoid unsafe raw SQL.
+- Ensure transaction boundaries are clear.
+
+### Alembic Rules
+
+- Use Alembic for schema migrations.
+- Review generated migration files.
+- Do not blindly accept incorrect autogenerated migrations.
+- Keep migration history consistent.
+- Test migrations against the local development database.
+- Document meaningful schema changes.
+- Never delete migration history to fix a database problem without understanding the consequences.
+
+### Data Integrity
+
+Maintain:
+
+- Primary keys.
+- Foreign keys.
+- Unique constraints.
+- Required fields.
+- Check constraints.
+- Appropriate indexes.
+- Correct relationships.
+
+Never silently delete historical booking information.
+
+---
+
+## 10. Authentication and Security Rules
+
+Implement JWT authentication and Role-Based Access Control.
+
+### Supported Roles
+
+- `customer`
+- `admin`
+
+### Password Security
+
+- Hash passwords before storage.
+- Never store plain-text passwords.
+- Never return password hashes in API responses.
+- Never log passwords.
+- Never hardcode credentials.
+
+### JWT Security
+
+- Validate token signatures.
+- Validate token expiration.
+- Use a secure secret from environment configuration.
+- Reject invalid tokens.
+- Do not trust user-supplied roles.
+- Document token storage and refresh behavior.
+
+Prefer secure HTTP-only cookies where the deployment architecture supports them. If bearer tokens are used, document the storage and security trade-offs.
+
+### Authorization
+
+Customers can:
+
+- View their own profile.
+- View their own bookings.
+- Create bookings for themselves.
+- Reschedule eligible bookings they own.
+- Cancel eligible bookings they own.
+
+Administrators can:
+
+- Manage services.
+- Manage providers where applicable.
+- Manage availability.
+- View and manage bookings according to permissions.
+
+Every protected backend endpoint must verify the required permissions.
+
+Never rely only on hidden buttons or frontend route guards.
+
+### Sensitive Information
+
+Never expose:
+
+- Passwords.
+- JWT secrets.
+- Database passwords.
+- Internal stack traces.
+- Private customer data to unauthorized users.
+
+---
+
+## 11. Appointment Booking Rules
+
+Booking logic must follow the PRD and architecture documents.
+
+### Booking Statuses
+
+Use:
+
+- `pending`
+- `confirmed`
+- `cancelled`
+- `completed`
+
+Enforce valid transitions on the backend.
+
+### Capacity
+
+A slot must never exceed its configured capacity.
+
+Example:
+
+If a slot capacity is 3, the fourth active booking must be rejected.
+
+### Double Booking
+
+Prevent simultaneous requests from exceeding capacity.
+
+Use:
+
+- Database transactions.
+- Appropriate row-level locking.
+- Safe capacity validation.
+- Appropriate database constraints where applicable.
+
+Do not rely on a frontend check alone.
+
+### Rescheduling
+
+When rescheduling:
+
+1. Verify booking ownership or admin permission.
+2. Verify booking eligibility.
+3. Validate the new slot.
+4. Check new-slot capacity.
+5. Release the old reservation.
+6. Reserve the new slot.
+7. Update booking details.
+8. Record the history event.
+
+Use a transaction so that the operation either succeeds completely or fails without leaving inconsistent data.
+
+### Cancellation
+
+When cancelling:
+
+- Verify authorization.
+- Verify cancellation eligibility.
+- Update the booking status.
+- Release capacity.
+- Record the history event.
+- Preserve the booking record.
+
+### Date and Time
+
+- Store timestamps in UTC.
+- Convert to local time for display.
+- Validate time ranges.
+- Prevent invalid past availability.
+- Handle timezone-aware datetime values consistently.
+
+---
+
+## 12. API Development Rules
+
+Use the versioned base path:
+
+`/api/v1`
+
+### API Requirements
+
+- Use appropriate HTTP methods.
+- Use meaningful endpoint names.
+- Use consistent response structures.
+- Use correct HTTP status codes.
+- Validate inputs with Pydantic.
+- Protect endpoints with authentication where required.
+- Apply role checks.
+- Check resource ownership.
+- Handle exceptions appropriately.
+- Document endpoints through FastAPI OpenAPI/Swagger.
+
+### HTTP Status Codes
+
+Use appropriate status codes, including:
+
+- `200` — successful request.
+- `201` — resource created.
+- `204` — successful operation without response content, when appropriate.
+- `400` — invalid business request.
+- `401` — authentication required.
+- `403` — insufficient permission.
+- `404` — resource not found.
+- `409` — resource conflict.
+- `422` — request validation error.
+- `500` — unexpected server error.
+
+Never return a successful status when the operation has failed.
+
+---
+
+## 13. Testing Rules
+
+Testing is mandatory.
+
+Do not mark a feature complete merely because the code has been written.
+
+### Backend Testing
+
+Use Pytest and HTTPX.
+
+Test:
+
+- API endpoints.
+- Authentication.
+- Authorization.
+- Validation.
+- Database operations.
+- Booking business rules.
+- Booking capacity.
+- Rescheduling.
+- Cancellation.
+- Error handling.
+
+### Frontend Testing
+
+Use Vitest and React Testing Library.
+
+Test:
+
+- Components.
+- Forms.
+- User interactions.
+- Protected routes.
+- API states.
+- Booking workflows.
+- Admin interactions.
+
+### End-to-End Testing
+
+Use Playwright for major customer and administrator workflows.
+
+### Test Database Rules
+
+- Use an isolated test database.
+- Do not accidentally modify the normal development database.
+- Do not use real customer information.
+- Clean up test data appropriately.
+- Include tests for failure cases, not only successful cases.
+
+### Completion Rule
+
+Before declaring a feature complete:
+
+1. Run the relevant tests.
+2. Check the application manually where appropriate.
+3. Fix discovered errors.
+4. Explain what was tested.
+5. Report any remaining limitations honestly.
+
+---
+
+## 14. Environment and Secret Management
+
+Use environment variables for configuration.
+
+Maintain:
+
+- `.env.example` files.
+- Local `.env` files.
+- `.gitignore`.
+
+Never commit:
+
+- Actual database passwords.
+- JWT secrets.
+- API keys.
+- Production credentials.
+- Private tokens.
+
+Do not invent credentials for the user.
+
+If a required environment variable is missing, explain how to configure it.
+
+Never print secret values in logs or documentation.
+
+---
+
+## 15. Error Handling and Logging
+
+### Frontend
+
+Display understandable messages.
+
+Examples:
+
+- Unable to load services.
+- Selected appointment slot is no longer available.
+- Your session has expired.
+- Booking could not be completed.
+- Please check the highlighted form fields.
+
+Do not display raw backend stack traces.
+
+### Backend
+
+- Handle expected exceptions.
+- Return appropriate status codes.
+- Log useful diagnostic information.
+- Avoid logging secrets or sensitive customer data.
+- Keep unexpected internal errors separate from public API messages.
+
+---
+
+## 16. Git and Version Control Rules
+
+Use Git for source control.
+
+Recommended workflow:
+
+1. Create a feature branch when appropriate.
+2. Make focused changes.
+3. Test the implementation.
+4. Review the changed files.
+5. Commit with meaningful messages.
+6. Merge only after verification.
+
+Example commit messages:
+
+- `feat: add customer registration`
+- `feat: implement service management`
+- `feat: add appointment booking`
+- `fix: prevent slot capacity overflow`
+- `test: add booking API tests`
+- `docs: update local setup instructions`
+
+Never overwrite or discard the user's uncommitted changes without permission.
+
+Do not run destructive Git commands without explaining their impact and obtaining approval.
+
+---
+
+## 17. Documentation Rules
+
+Keep project documentation accurate.
+
+Update relevant documentation when:
+
+- A new feature is implemented.
+- API endpoints change.
+- Database models change.
+- Migrations are added.
+- Environment variables change.
+- Setup instructions change.
+- An architectural decision changes.
+
+Important documents include:
+
+- `README.md`
+- `docs/api/`
+- `docs/database/`
+- `docs/testing/`
+- `docs/deployment/`
+- `ai-assistant/architecture.md`
+- `ai-assistant/design.md`
+- `ai-assistant/phases.md`
+- `ai-assistant/PRD.md`
+
+Do not claim documentation has been updated if it has not been changed.
+
+---
+
+## 18. Docker and Deployment Rules
+
+Use Docker and Docker Compose for reproducible application environments.
+
+Requirements:
+
+- Keep frontend and backend Dockerfiles separate.
+- Read configuration from environment variables.
+- Do not embed credentials in Docker images.
+- Configure services explicitly.
+- Document how containers communicate.
+- Verify production builds.
+- Verify database migrations.
+- Document startup and shutdown commands.
+
+### Local PostgreSQL Requirement
+
+The user's local PostgreSQL installation managed through pgAdmin 4 remains the primary development database.
+
+Docker configuration must support configurable database connectivity.
+
+Do not silently replace the local database with SQLite or an unrelated cloud database.
+
+If a containerized PostgreSQL option is introduced, document it as a separate environment option.
+
+---
+
+## 19. How to Respond When Implementing a Feature
+
+For each implementation task, use this response structure.
+
+### Step 1 — Explain the Goal
+
+Briefly explain what is being implemented and why.
+
+### Step 2 — Identify the Files
+
+Show the exact folder and file paths.
+
+### Step 3 — Explain Dependencies
+
+Mention any required package, environment variable, migration, or existing component.
+
+### Step 4 — Provide Complete Code
+
+Provide complete code for the requested files.
+
+Include correct imports and file names.
+
+### Step 5 — Explain the Code
+
+Explain important concepts in beginner-friendly language.
+
+### Step 6 — Run Instructions
+
+Provide exact terminal commands and identify the directory where each command should be executed.
+
+### Step 7 — Test Instructions
+
+Explain how to verify the feature.
+
+### Step 8 — Completion Status
+
+Report:
+
+- Implemented functionality.
+- Files created or modified.
+- Tests executed.
+- Test results.
+- Remaining work.
+
+Do not claim successful execution unless it was actually verified.
+
+---
+
+## 20. Existing Code Protection Rules
+
+Before changing existing code:
+
+1. Inspect the relevant files.
+2. Understand their current responsibilities.
+3. Check imports and dependencies.
+4. Identify affected features.
+5. Preserve existing working behavior.
+6. Explain potentially breaking changes.
+7. Avoid unnecessary rewrites.
+
+When fixing a bug:
+
+- Identify the actual cause.
+- Explain why the error occurred.
+- Provide the smallest reliable fix.
+- Check related files if the fix affects them.
+- Test the corrected behavior.
+
+Never replace an entire working feature simply to make a small change.
+
+---
+
+## 21. Prohibited Practices
+
+Do not:
+
+- Use TypeScript in the frontend.
+- Replace PostgreSQL with SQLite.
+- Hardcode credentials.
+- Store plain-text passwords.
+- Trust frontend authorization.
+- Allow customers to access other customers' bookings.
+- Allow booking capacity to be exceeded.
+- Delete historical bookings when cancelling.
+- Put all backend functionality into one file.
+- Put all frontend functionality into one component.
+- Duplicate API clients unnecessarily.
+- Ignore failed tests.
+- Hide errors instead of fixing them.
+- Introduce unnecessary dependencies.
+- Generate unrelated mini-projects.
+- Skip the approved development phases.
+- Change the architecture without justification.
+- Modify unrelated files unnecessarily.
+- Claim code has been executed when it has not.
+- Claim a feature is complete without verifying it.
+
+---
+
+## 22. Requirement Conflict Resolution
+
+If instructions conflict, follow this order:
+
+1. Explicitly approved user decisions.
+2. Product requirements in `ai-assistant/PRD.md`.
+3. Architecture decisions in `ai-assistant/architecture.md`.
+4. Development sequence in `ai-assistant/phases.md`.
+5. UI guidelines in `ai-assistant/design.md`.
+6. General rules in this `.opencoderules` file.
+
+If a conflict cannot be resolved confidently, explain it and ask for clarification.
+
+Do not silently change an approved requirement.
+
+---
+
+## 23. Final Development Principle
+
+Build the Service Booking Application as a real, maintainable full-stack application.
+
+Prioritize:
+
+1. Correct functionality.
+2. Secure authentication and authorization.
+3. Database integrity.
+4. Reliable booking operations.
+5. Clean architecture.
+6. Responsive UI.
+7. Automated testing.
+8. Clear documentation.
+9. Maintainable code.
+
+Work incrementally.
+
+Understand before changing.
+
+Test before completing.
+
+Explain before introducing complexity.
+
+**The goal is not simply to generate code. The goal is to build a working application while helping the user understand every important part of the development process.**

@@ -1,0 +1,45 @@
+# ClincClick — root .gitignore
+
+# --- Environment / secrets (NEVER commit these) ---
+.env
+.env.*
+!.env.example
+backend/.env
+frontend/.env
+
+# --- Backend (Python) ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+alembic/versions/__pycache__/
+backend/instance/
+
+# --- Frontend (Node) ---
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json.bak
+
+# --- Editors / IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+Thumbs.db
+.DS_Store
+
+# --- OS / misc ---
+*.log
+temp/
+tmp/
