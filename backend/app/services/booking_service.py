@@ -274,8 +274,12 @@ class BookingService:
             if booking is None:
                 raise NotFoundError("Booking not found")
             current = booking.status
-            if new_status == current:
-                return booking
+            if new_status == BookingStatus.COMPLETED:
+                slot = self.repository.lock_slot(booking.slot_id)
+                if slot is not None and slot.start_time > utc_now():
+                    raise ConflictError(
+                        "A booking can only be completed after its appointment time"
+                    )
             if new_status not in _ALLOWED_ADMIN_TRANSITIONS[current]:
                 raise ConflictError(
                     f"Transition {current.value} -> {new_status.value} not allowed",

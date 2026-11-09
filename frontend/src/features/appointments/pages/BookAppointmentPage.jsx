@@ -35,14 +35,11 @@ export default function BookAppointmentPage() {
     let active = true
     Promise.all([
       serviceService.list({ limit: 200 }),
-      providerService.listOrProvided(),
-    ]).then(([svcs]) => {
+      providerService.list({ limit: 200 }),
+    ]).then(([svcs, prs]) => {
       if (!active) return
       setServices(svcs ?? [])
-        providerService.list({ limit: 200 }).then((data) => {
-          if (!active) return
-          setProviders(data ?? [])
-        }).catch(() => toast.error("Could not load providers"))
+      setProviders(prs ?? [])
     }).catch(() => {
       toast.error("Could not load services")
     }).finally(() => {
