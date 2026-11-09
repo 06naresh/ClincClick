@@ -22,12 +22,21 @@ router = APIRouter(prefix="/admin", tags=["Admin"])
 
 def _serialize_booking(b):
     item = BookingListenerResponse.model_validate(b)
+    user = getattr(b, "user", None)
     slot = getattr(b, "slot", None)
+    if user is not None:
+        item.customer_name = getattr(user, "full_name", None)
     if slot is not None:
         item.slot_start_time = slot.start_time
         item.slot_end_time = slot.end_time
         item.service_id = slot.service_id
         item.provider_id = slot.provider_id
+        service = getattr(slot, "service", None)
+        provider = getattr(slot, "provider", None)
+        if service is not None:
+            item.service_name = getattr(service, "name", None)
+        if provider is not None:
+            item.provider_name = getattr(provider, "full_name", None)
     return item
 
 

@@ -34,6 +34,9 @@ class BookingListenerResponse(BaseModel):
     slot_end_time: datetime | None = None
     service_id: int | None = None
     provider_id: int | None = None
+    customer_name: str | None = None
+    service_name: str | None = None
+    provider_name: str | None = None
     status: BookingStatus
     reason: str | None = None
     created_at: datetime

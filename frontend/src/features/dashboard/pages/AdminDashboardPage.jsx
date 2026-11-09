@@ -94,7 +94,7 @@ export default function AdminDashboardPage() {
                       {recent.map((b) => (
                         <tr key={b.id} className="hover:bg-surface-muted/60">
                           <td className="px-4 py-3 text-sm font-semibold text-heading">{b.booking_reference}</td>
-                          <td className="px-4 py-3 text-sm text-body">{b.user_id}</td>
+                          <td className="px-4 py-3 text-sm text-body">{b.customer_name || `#${b.user_id}`}</td>
                           <td className="px-4 py-3 text-sm text-body">{b.slot_id}</td>
                           <td className="px-4 py-3">
                             <Badge variant={b.status === "cancelled" ? "danger" : b.status === "completed" ? "success" : b.status === "confirmed" ? "info" : "warning"}>

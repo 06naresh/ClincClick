@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, Navigate } from "react-router-dom";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
@@ -18,7 +18,8 @@ const loginSchema = z.object({
 
 export default function LoginPage() {
   const navigate = useNavigate()
-  const { login } = useAuth()
+  const location = useLocation()
+  const { login, user } = useAuth()
   const [showPassword, setShowPassword] = useState(false)
   const {
     register,
@@ -33,12 +34,21 @@ export default function LoginPage() {
     try {
       const data = await login(values)
       toast.success("Welcome back!")
-      navigate(data.user.role === "admin" ? "/admin/dashboard" : "/dashboard")
+      const from = location.state?.from
+      if (from?.pathname && from.pathname !== "/login") {
+        navigate(`${from.pathname}${from.search || ""}`, { replace: true })
+      } else {
+        navigate(data.user.role === "admin" ? "/admin/dashboard" : "/dashboard", { replace: true })
+      }
     } catch (error) {
       const message =
         error?.response?.data?.message || "Login failed. Check your credentials."
       toast.error(message)
     }
+  }
+
+if (user) {
+    return <Navigate to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"} replace />
   }
 
   return (

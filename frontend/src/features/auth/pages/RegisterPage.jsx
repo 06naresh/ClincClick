@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, Navigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
@@ -35,7 +35,7 @@ const registerSchema = z
 
 export default function RegisterPage() {
   const navigate = useNavigate()
-  const { register: registerUser } = useAuth()
+  const { register: registerUser, user } = useAuth()
   const {
     register,
     handleSubmit,
@@ -58,6 +58,10 @@ export default function RegisterPage() {
         error?.response?.data?.message || "Registration failed. Please try again."
       toast.error(message)
     }
+  }
+
+if (user) {
+    return <Navigate to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"} replace />
   }
 
   return (

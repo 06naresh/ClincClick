@@ -6,26 +6,36 @@ import Button from "../ui/Button";
 export default function Navbar({ user, onLogout }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isAdmin = user?.role === "admin";
-  const navLinks = isAdmin
+
+  const navLinks = !user
     ? [
-        { to: "/admin/dashboard", label: "Dashboard" },
-        { to: "/admin/services", label: "Services" },
-        { to: "/admin/providers", label: "Providers" },
-        { to: "/admin/availability", label: "Availability" },
-        { to: "/admin/bookings", label: "Bookings" },
-      ]
-    : [
-        { to: "/dashboard", label: "Dashboard" },
+        { to: "/", label: "Home" },
         { to: "/services", label: "Services" },
-        { to: "/dashboard/bookings", label: "My bookings" },
-        { to: "/dashboard/profile", label: "Profile" },
-      ];
+        { to: "/login", label: "Sign in" },
+        { to: "/register", label: "Sign up" },
+      ]
+    : isAdmin
+      ? [
+          { to: "/admin/dashboard", label: "Dashboard" },
+          { to: "/admin/services", label: "Services" },
+          { to: "/admin/providers", label: "Providers" },
+          { to: "/admin/availability", label: "Availability" },
+          { to: "/admin/bookings", label: "Bookings" },
+        ]
+      : [
+          { to: "/dashboard", label: "Dashboard" },
+          { to: "/services", label: "Services" },
+          { to: "/dashboard/bookings", label: "My bookings" },
+          { to: "/dashboard/profile", label: "Profile" },
+        ];
+
+  const brandTarget = !user ? "/" : isAdmin ? "/admin/dashboard" : "/dashboard";
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-stroke bg-surface/95 backdrop-blur">
       <div className="mx-auto flex h-14 w-[90%] max-w-7xl items-center justify-between">
         <div className="flex items-center gap-3">
-          <Link to={isAdmin ? "/admin/dashboard" : "/dashboard"} className="text-sm font-bold text-heading">
+          <Link to={brandTarget} className="text-sm font-bold text-heading">
             ClincClick
           </Link>
           <nav className="hidden items-center gap-1 md:flex">

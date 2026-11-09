@@ -77,7 +77,7 @@ export default function ServiceDetailsPage() {
           <span>Price: ${Number(service.price).toFixed(2)}</span>
         </div>
         <div className="mt-5">
-          <Button onClick={() => navigate(`/book?service_id=${service.id}`)} fullWidth>
+          <Button onClick={() => navigate(`/dashboard/book?service_id=${service.id}`)} fullWidth>
             Book appointment
           </Button>
         </div>

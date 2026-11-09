@@ -52,7 +52,7 @@ export default function CustomerDashboardPage() {
             <h1 className="text-2xl font-bold text-heading">Welcome back, {user?.full_name}</h1>
             <p className="mt-1 text-sm text-muted">Manage your clinic appointments.</p>
           </div>
-          <Link to="/book" className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">
+          <Link to="/dashboard/book" className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">
             Book appointment
           </Link>
         </div>
@@ -70,7 +70,7 @@ export default function CustomerDashboardPage() {
           <h2 className="mb-3 text-lg font-semibold text-heading">Next appointment</h2>
           {!next ? (
             <EmptyState title="No upcoming appointments" description="Book your first appointment to get started." action={
-              <Link to="/book" className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">Book now</Link>
+              <Link to="/dashboard/book" className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">Book now</Link>
             } />
           ) : (
             <Card>

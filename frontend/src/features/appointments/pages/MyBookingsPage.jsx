@@ -95,7 +95,7 @@ export default function MyBookingsPage() {
         ) : bookings.length === 0 ? (
           <div className="mt-6">
             <EmptyState title="No bookings found" description="Try changing the filter or book a new appointment." action={
-              <Link to="/book" className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">Book appointment</Link>
+              <Link to="/dashboard/book" className="inline-flex items-center rounded-lg bg-primary px-4 py-2 text-sm font-semibold text-white hover:bg-primary-dark">Book appointment</Link>
             } />
           </div>
         ) : (

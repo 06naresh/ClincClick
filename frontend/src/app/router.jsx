@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Navigate, useLocation } from "react-router-dom";
 
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import RootRedirect from "../components/layout/RootRedirect";
@@ -25,6 +25,9 @@ import BookAppointmentPage from "../features/appointments/pages/BookAppointmentP
 import AdminBookingsPage from "../features/appointments/pages/AdminBookingsPage";
 
 const router = createBrowserRouter([
+  // --- Legacy /book -> protected booking page (preserves query) -----------
+  { path: "/book", element: <BookRedirect /> },
+
   // --- Public (customer-facing) --------------------------------------------
   {
     path: "/",
@@ -75,6 +78,11 @@ const router = createBrowserRouter([
   { path: "/admin/dashboard", element: <ProtectedRoute allowedRoles={["admin"]}><AdminDashboardPage /></ProtectedRoute> },
   { path: "*", element: <ServicesPage /> },
 ])
+
+function BookRedirect() {
+  const location = useLocation();
+  return <Navigate to={{ pathname: "/dashboard/book", search: location.search }} replace />;
+}
 
 export function AppRouter() {
   return <RouterProvider router={router} />

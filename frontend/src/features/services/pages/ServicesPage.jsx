@@ -94,7 +94,7 @@ export default function ServicesPage() {
                 <Button variant="outline" size="sm" onClick={() => navigate(`/services/${service.id}`)} fullWidth>
                   Details
                 </Button>
-                <Button size="sm" onClick={() => navigate(`/book?service_id=${service.id}`)} fullWidth>
+                <Button size="sm" onClick={() => navigate(`/dashboard/book?service_id=${service.id}`)} fullWidth>
                   Book now
                 </Button>
               </div>

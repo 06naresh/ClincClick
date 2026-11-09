@@ -1018,10 +1018,10 @@ Do not:
 If instructions conflict, follow this order:
 
 1. Explicitly approved user decisions.
-2. Product requirements in `ai-assistant/PRD.md`.
-3. Architecture decisions in `ai-assistant/architecture.md`.
-4. Development sequence in `ai-assistant/phases.md`.
-5. UI guidelines in `ai-assistant/design.md`.
+2. Product requirements in `md_files/PRD.md`.
+3. Architecture decisions in `md_files/architecture.md`.
+4. Development sequence in `md_files/phases.md`.
+5. UI guidelines in `md_files/design.md`.
 6. General rules in this `.opencoderules` file.
 
 If a conflict cannot be resolved confidently, explain it and ask for clarification.
