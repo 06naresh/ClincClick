@@ -1,8 +1,10 @@
-import { LogOut } from "lucide-react";
+import { useState } from "react";
+import { LogOut, Menu, X } from "lucide-react";
 import { Link } from "react-router-dom";
 import Button from "../ui/Button";
 
 export default function Navbar({ user, onLogout }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
   const isAdmin = user?.role === "admin";
   const navLinks = isAdmin
     ? [
@@ -35,16 +37,56 @@ export default function Navbar({ user, onLogout }) {
           </nav>
         </div>
         <div className="flex items-center gap-3">
-          <span className="rounded-full bg-primary-light px-2 py-0.5 text-xs font-semibold text-primary-dark">
-            {user?.role}
-          </span>
-          <span className="text-sm text-body">{user?.full_name}</span>
-          <Button variant="ghost" size="sm" onClick={onLogout}>
-            <LogOut className="h-4 w-4" aria-hidden="true" />
-            Logout
-          </Button>
+          {user ? (
+            <>
+              <span className="hidden rounded-full bg-primary-light px-2 py-0.5 text-xs font-semibold text-primary-dark sm:inline">
+                {user.role}
+              </span>
+              <span className="hidden text-sm text-body sm:inline">{user.full_name}</span>
+              <Button variant="ghost" size="sm" onClick={onLogout}>
+                <LogOut className="h-4 w-4" aria-hidden="true" />
+                <span className="hidden sm:inline">Logout</span>
+              </Button>
+            </>
+          ) : null}
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            className="flex h-8 w-8 items-center justify-center rounded-md text-body hover:bg-surface-muted md:hidden"
+            onClick={() => setMobileOpen((v) => !v)}
+          >
+            {mobileOpen ? <X className="h-4 w-4" aria-hidden="true" /> : <Menu className="h-4 w-4" aria-hidden="true" />}
+          </button>
         </div>
       </div>
+
+      {mobileOpen ? (
+        <div className="border-t border-stroke bg-surface md:hidden">
+          <div className="mx-auto w-[90%] max-w-7xl py-2">
+            <nav className="space-y-1" aria-label="Mobile navigation">
+              {navLinks.map((l) => (
+                <Link
+                  key={l.to}
+                  to={l.to}
+                  onClick={() => setMobileOpen(false)}
+                  className="block rounded-md px-3 py-2 text-sm font-medium text-body hover:bg-surface-muted"
+                >
+                  {l.label}
+                </Link>
+              ))}
+              {user ? (
+                <button
+                  type="button"
+                  onClick={() => { setMobileOpen(false); onLogout?.(); }}
+                  className="block w-full rounded-md px-3 py-2 text-left text-sm font-medium text-danger hover:bg-surface-muted"
+                >
+                  Logout
+                </button>
+              ) : null}
+            </nav>
+          </div>
+        </div>
+      ) : null}
     </header>
-  )
+  );
 }

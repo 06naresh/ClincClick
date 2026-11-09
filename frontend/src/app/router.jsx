@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import RootRedirect from "../components/layout/RootRedirect";
 import PublicLayout from "../components/layout/PublicLayout";
 import CustomerLayout from "../components/layout/CustomerLayout";
 import AdminLayout from "../components/layout/AdminLayout";
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <PublicLayout />,
     children: [
-      { index: true, element: <LoginPage /> },
+      { index: true, element: <RootRedirect /> },
       { path: "login", element: <LoginPage /> },
       { path: "register", element: <RegisterPage /> },
       { path: "services", element: <ServicesPage /> },

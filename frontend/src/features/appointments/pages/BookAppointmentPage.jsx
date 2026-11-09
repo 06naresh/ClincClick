@@ -187,6 +187,7 @@ export default function BookAppointmentPage() {
                   <button
                     key={s.id}
                     type="button"
+                    data-slot-id={s.id}
                     onClick={() => setSelectedSlotId(s.id)}
                     className={`rounded-lg border px-3 py-2 text-sm font-semibold ${selectedSlotId === s.id ? "border-primary bg-primary text-white" : "border-stroke bg-surface text-body hover:bg-surface-muted"}`}
                   >
