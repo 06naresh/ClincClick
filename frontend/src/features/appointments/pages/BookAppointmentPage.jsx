@@ -6,7 +6,6 @@ import Card from "../../../components/ui/Card";
 import Button from "../../../components/ui/Button";
 import EmptyState from "../../../components/ui/EmptyState";
 import Spinner from "../../../components/ui/Spinner";
-import Navbar from "../../../components/layout/Navbar";
 import { useAuth } from "../../../context/AuthContext";
 import { serviceService } from "../../services/services/serviceService";
 import { providerService } from "../../providers/services/providerService";
@@ -111,7 +110,6 @@ export default function BookAppointmentPage() {
   if (booked) {
     return (
       <div className="min-h-screen bg-background">
-        <Navbar user={user} onLogout={logout} />
         <main className="mx-auto max-w-lg px-4 py-8">
           <Card>
             <h1 className="text-lg font-bold text-heading">Appointment confirmed</h1>
@@ -131,7 +129,6 @@ export default function BookAppointmentPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-3xl px-4 py-8">
         <h1 className="text-xl font-bold text-heading">Book an appointment</h1>
         <p className="mt-1 text-sm text-muted">Choose a service, provider and available time slot.</p>

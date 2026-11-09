@@ -8,7 +8,6 @@ import Spinner from "../../../components/ui/Spinner";
 import Input from "../../../components/ui/Input";
 import Button from "../../../components/ui/Button";
 import Select from "../../../components/ui/Select";
-import Navbar from "../../../components/layout/Navbar";
 import ConfirmDialog from "../../../components/ui/ConfirmDialog";
 import { useAuth } from "../../../context/AuthContext";
 import { bookingService } from "../services/bookingService";
@@ -84,7 +83,6 @@ export default function AdminBookingsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="text-xl font-bold text-heading">Booking management</h1>
         <p className="text-sm text-muted">Filter, inspect and manage customer bookings.</p>

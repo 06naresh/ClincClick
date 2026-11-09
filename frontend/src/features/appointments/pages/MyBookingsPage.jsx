@@ -8,7 +8,6 @@ import EmptyState from "../../../components/ui/EmptyState";
 import Button from "../../../components/ui/Button";
 import Spinner from "../../../components/ui/Spinner";
 import ConfirmDialog from "../../../components/ui/ConfirmDialog";
-import Navbar from "../../../components/layout/Navbar";
 import { useAuth } from "../../../context/AuthContext";
 import { bookingService } from "../services/bookingService";
 import RescheduleModal from "../components/RescheduleModal";
@@ -74,7 +73,6 @@ export default function MyBookingsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-4xl px-4 py-8">
         <h1 className="text-xl font-bold text-heading">My bookings</h1>
         <p className="mt-1 text-sm text-muted">View, reschedule and cancel your appointments.</p>

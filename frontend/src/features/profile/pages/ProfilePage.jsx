@@ -5,7 +5,6 @@ import { toast } from "sonner";
 import Card from "../../../components/ui/Card";
 import Input from "../../../components/ui/Input";
 import Button from "../../../components/ui/Button";
-import Navbar from "../../../components/layout/Navbar";
 import { useAuth } from "../../../context/AuthContext";
 import { profileService } from "../services/profileService";
 
@@ -34,7 +33,6 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-lg px-4 py-8">
         <h1 className="text-xl font-bold text-heading">Profile</h1>
         <Card className="mt-4">

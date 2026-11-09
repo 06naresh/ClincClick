@@ -41,3 +41,9 @@
   /* Typography */
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 }
+
+/* Offset for the fixed top navbar (h-14) */
+body {
+  padding-top: 3.5rem;
+}
+

@@ -8,7 +8,6 @@ import EmptyState from "../../../components/ui/EmptyState";
 import Button from "../../../components/ui/Button";
 import Spinner from "../../../components/ui/Spinner";
 import ConfirmDialog from "../../../components/ui/ConfirmDialog";
-import Navbar from "../../../components/layout/Navbar";
 import { useAuth } from "../../../context/AuthContext";
 import { bookingService } from "../services/bookingService";
 import RescheduleModal from "../components/RescheduleModal";
@@ -61,7 +60,6 @@ export default function BookingDetailsPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-3xl px-4 py-8">
         <Link to="/dashboard/bookings" className="text-sm text-primary hover:text-primary-dark">
           ← Back to my bookings

@@ -6,7 +6,6 @@ import Card from "../../../components/ui/Card";
 import Badge from "../../../components/ui/Badge";
 import Spinner from "../../../components/ui/Spinner";
 import EmptyState from "../../../components/ui/EmptyState";
-import Navbar from "../../../components/layout/Navbar";
 import { useAuth } from "../../../context/AuthContext";
 import { dashboardService } from "../services/dashboardService";
 
@@ -47,7 +46,6 @@ export default function CustomerDashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-4xl px-4 py-8">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>

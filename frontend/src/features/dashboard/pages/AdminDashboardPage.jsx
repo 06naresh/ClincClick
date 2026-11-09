@@ -6,7 +6,6 @@ import Card from "../../../components/ui/Card";
 import Badge from "../../../components/ui/Badge";
 import Spinner from "../../../components/ui/Spinner";
 import EmptyState from "../../../components/ui/EmptyState";
-import Navbar from "../../../components/layout/Navbar";
 import { useAuth } from "../../../context/AuthContext";
 import { dashboardService } from "../services/dashboardService";
 
@@ -40,7 +39,6 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navbar user={user} onLogout={logout} />
       <main className="mx-auto max-w-6xl px-4 py-8">
         <h1 className="text-2xl font-bold text-heading">Admin dashboard</h1>
         <p className="mt-1 text-sm text-muted">
