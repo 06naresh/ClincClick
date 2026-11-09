@@ -31,9 +31,9 @@ export default function LoginPage() {
 
   const onSubmit = async (values) => {
     try {
-      await login(values)
+      const data = await login(values)
       toast.success("Welcome back!")
-      navigate("/dashboard")
+      navigate(data.user.role === "admin" ? "/admin/dashboard" : "/dashboard")
     } catch (error) {
       const message =
         error?.response?.data?.message || "Login failed. Check your credentials."

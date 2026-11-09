@@ -20,6 +20,7 @@ import AdminAvailabilityPage from "../features/availability/pages/AdminAvailabil
 import ProfilePage from "../features/profile/pages/ProfilePage";
 import MyBookingsPage from "../features/appointments/pages/MyBookingsPage";
 import BookingDetailsPage from "../features/appointments/pages/BookingDetailsPage";
+import BookAppointmentPage from "../features/appointments/pages/BookAppointmentPage";
 import AdminBookingsPage from "../features/appointments/pages/AdminBookingsPage";
 
 const router = createBrowserRouter([
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <PublicLayout />,
     children: [
-      { index: true, element: <ServicesPage /> },
+      { index: true, element: <LoginPage /> },
       { path: "login", element: <LoginPage /> },
       { path: "register", element: <RegisterPage /> },
       { path: "services", element: <ServicesPage /> },
@@ -46,6 +47,7 @@ const router = createBrowserRouter([
     ),
     children: [
       { index: true, element: <CustomerDashboardPage /> },
+      { path: "book", element: <BookAppointmentPage /> },
       { path: "bookings", element: <MyBookingsPage /> },
       { path: "bookings/:bookingId", element: <BookingDetailsPage /> },
       { path: "profile", element: <ProfilePage /> },

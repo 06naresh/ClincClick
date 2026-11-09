@@ -10,7 +10,7 @@ import { useAuth } from "../../../context/AuthContext";
 import { profileService } from "../services/profileService";
 
 export default function ProfilePage() {
-  const { user, logout } = useAuth()
+  const { user, logout, setUser } = useAuth()
   const [form, setForm] = useState({ full_name: user?.full_name || "", phone: user?.phone || "" })
   const [saving, setSaving] = useState(false)
 
@@ -22,7 +22,8 @@ export default function ProfilePage() {
     e.preventDefault()
     setSaving(true)
     try {
-      await profileService.update({ full_name: form.full_name, phone: form.phone || null })
+      const updated = await profileService.update({ full_name: form.full_name, phone: form.phone || null })
+      if (updated) setUser(updated)
       toast.success("Profile updated")
     } catch (err) {
       toast.error(err?.response?.data?.message || "Could not update profile")

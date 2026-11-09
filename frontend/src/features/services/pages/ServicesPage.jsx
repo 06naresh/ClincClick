@@ -90,14 +90,14 @@ export default function ServicesPage() {
                 <span>{service.duration_minutes} min</span>
                 <span className="font-semibold text-primary">${Number(service.price).toFixed(2)}</span>
               </div>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => navigate(`/services/${service.id}`)}
-                fullWidth
-              >
-                View details & availability
-              </Button>
+              <div className="flex gap-2">
+                <Button variant="outline" size="sm" onClick={() => navigate(`/services/${service.id}`)} fullWidth>
+                  Details
+                </Button>
+                <Button size="sm" onClick={() => navigate(`/book?service_id=${service.id}`)} fullWidth>
+                  Book now
+                </Button>
+              </div>
             </Card>
           ))}
         </div>

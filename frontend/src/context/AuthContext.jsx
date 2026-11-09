@@ -71,7 +71,7 @@ export function AuthProvider({ children }) {
   }, [])
 
   const value = useMemo(
-    () => ({ user, loading, login, register, logout }),
+    () => ({ user, loading, login, register, logout, setUser }),
     [user, loading, login, register, logout]
   )
 

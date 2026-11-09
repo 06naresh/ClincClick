@@ -2,16 +2,16 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 
-import Card from "../../components/ui/Card";
-import Button from "../../components/ui/Button";
-import EmptyState from "../../components/ui/EmptyState";
-import Spinner from "../../components/ui/Spinner";
-import Navbar from "../../components/layout/Navbar";
-import { useAuth } from "../../context/AuthContext";
+import Card from "../../../components/ui/Card";
+import Button from "../../../components/ui/Button";
+import EmptyState from "../../../components/ui/EmptyState";
+import Spinner from "../../../components/ui/Spinner";
+import Navbar from "../../../components/layout/Navbar";
+import { useAuth } from "../../../context/AuthContext";
 import { serviceService } from "../../services/services/serviceService";
 import { providerService } from "../../providers/services/providerService";
 import { availabilityService } from "../../availability/services/availabilityService";
-import { bookingService } from "../../services/bookingService";
+import { bookingService } from "../services/bookingService";
 
 export default function BookAppointmentPage() {
   const { user, logout } = useAuth()

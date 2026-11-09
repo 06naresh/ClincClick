@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 import Card from "../../../components/ui/Card";
@@ -11,6 +11,7 @@ import { availabilityService } from "../../../features/availability/services/ava
 
 export default function ServiceDetailsPage() {
   const { serviceId } = useParams()
+  const navigate = useNavigate()
   const [service, setService] = useState(null)
   const [slots, setSlots] = useState([])
   const [loading, setLoading] = useState(true)
@@ -32,9 +33,7 @@ export default function ServiceDetailsPage() {
         if (active) setLoading(false)
       }
     })()
-    return () => {
-      active = false
-    }
+    return () => { active = false }
   }, [serviceId])
 
   if (loading) {
@@ -77,8 +76,10 @@ export default function ServiceDetailsPage() {
           <span>Duration: {service.duration_minutes} min</span>
           <span>Price: ${Number(service.price).toFixed(2)}</span>
         </div>
-        <div className="mt-5 rounded-lg bg-primary-light/40 p-3 text-sm text-primary-dark">
-          Online booking lands in Phase 07. Use the available slots below to preview times.
+        <div className="mt-5">
+          <Button onClick={() => navigate(`/book?service_id=${service.id}`)} fullWidth>
+            Book appointment
+          </Button>
         </div>
       </Card>
 

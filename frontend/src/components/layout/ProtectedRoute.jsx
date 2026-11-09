@@ -25,7 +25,14 @@ export default function ProtectedRoute({ allowedRoles, children }) {
   }
 
   if (allowedRoles?.length && !allowedRoles.includes(user.role)) {
-    return <Navigate to="/dashboard" replace />
+    // Customers trying admin routes go to their dashboard, admins trying
+    // customer routes go to the admin dashboard.
+    return <Navigate to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"} replace />
+  }
+
+  // Admins that land on the customer dashboard are redirected to admin.
+  if (!allowedRoles?.length && user.role === "admin" && location.pathname.startsWith("/dashboard")) {
+    return <Navigate to="/admin/dashboard" replace />
   }
 
   return children
